@@ -5,9 +5,13 @@ import { useTRPC } from "@/trpc/client";
 import { useRouter } from "next/navigation";
 import { useConfirm } from "@/hooks/use-confirm";
 import { ErrorState } from "@/components/error-state";
+import { ActiveState } from "../components/active-state";
 import { LoadingState } from "@/components/loading-state";
+import { CancelledState } from "../components/cancelled-state";
+import { ProcessingState } from "../components/processing-state";
 import { UpdateMeetingDialog } from "../components/update-meeting-dialog";
 import { MeetingIdViewHeader } from "../components/meeting-id-view-header";
+import { UpcomingState } from "@/modules/meetings/ui/components/upcoming-state";
 import { useMutation, useQueryClient, useSuspenseQuery } from "@tanstack/react-query";
 
 interface Props {
@@ -42,7 +46,13 @@ export const MeetingIdView = ({ meetingId }: Props) => {
         if (!ok) return;
 
         await removeMeeting.mutateAsync({ id: meetingId });
-    }
+    };
+
+    const isActive = data.status === "active";
+    const isUpcoming = data.status === "upcoming";
+    const isCancelled = data.status === "cancelled";
+    const isCompleted = data.status === "completed";
+    const isProcessing = data.status === "processing";
 
     return (
         <>
@@ -59,7 +69,16 @@ export const MeetingIdView = ({ meetingId }: Props) => {
                     onEdit={() => setUpdateMeetingDialogOpen(true)}
                     onRemove={handleRemoveMeeting}
                 />
-                {JSON.stringify(data, null, 2)}
+                {isCancelled && <CancelledState />}
+                {isProcessing && <ProcessingState />}
+                {isCompleted && <div>Completed</div>}
+                {isActive && <ActiveState meetingId={meetingId} />}
+                {isUpcoming && (
+                    <UpcomingState
+                        meetingId={meetingId}
+                        onCancelMeeting={() => { }}
+                        isCancelling={false}
+                    />)}
             </div>
         </>
     );
