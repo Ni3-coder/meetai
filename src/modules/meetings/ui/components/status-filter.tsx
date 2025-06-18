@@ -1,5 +1,4 @@
 import {
-    CircleXIcon,
     CircleCheckIcon,
     ClockArrowUpIcon,
     VideoIcon,
