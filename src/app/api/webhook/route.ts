@@ -2,6 +2,10 @@ import { and, eq, not } from "drizzle-orm";
 import { NextRequest, NextResponse } from "next/server";
 import {
     CallEndedEvent,
+<<<<<<< background-jobs
+=======
+    CallTranscriptionReadyEvent,
+>>>>>>> main
     CallRecordingReadyEvent,
     CallSessionStartedEvent,
     CallTranscriptionReadyEvent,
