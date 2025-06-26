@@ -1,8 +1,8 @@
 import { and, eq, not } from "drizzle-orm";
 import { NextRequest, NextResponse } from "next/server";
 import {
-    // CallEndedEvent,
-    // CallTranscriptionReadyEvent,
+    CallEndedEvent,
+    CallTranscriptionReadyEvent,
     CallRecordingReadyEvent,
     CallSessionParticipantLeftEvent,
     CallSessionStartedEvent,
