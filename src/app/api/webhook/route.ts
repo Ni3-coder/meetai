@@ -2,16 +2,9 @@ import { and, eq, not } from "drizzle-orm";
 import { NextRequest, NextResponse } from "next/server";
 import {
     CallEndedEvent,
-<<<<<<< HEAD
-    CallTranscriptionReadyEvent,
-=======
-<<<<<<< background-jobs
-=======
-    CallTranscriptionReadyEvent,
->>>>>>> main
->>>>>>> f48c36d2c484664ded10406a0501448019d09649
     CallRecordingReadyEvent,
     CallSessionStartedEvent,
+    CallTranscriptionReadyEvent,
     CallSessionParticipantLeftEvent,
 } from "@stream-io/node-sdk";
 import { db } from "@/db";
