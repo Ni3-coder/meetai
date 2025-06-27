@@ -62,7 +62,14 @@ export async function POST(req: NextRequest) {
         return NextResponse.json({ error: "Invalid signature" }, { status: 401 });
     }
 
-    let payload: any;
+    let payload:
+        | CallSessionStartedEvent
+        | CallRecordingReadyEvent
+        | CallSessionParticipantLeftEvent
+        | CallEndedEvent
+        | CallTranscriptionReadyEvent
+        | MessageNewEvent
+        | { type?: string };
     try {
         payload = JSON.parse(body);
     } catch {
@@ -123,7 +130,11 @@ export async function POST(req: NextRequest) {
         try {
             await connectAgentToCall(meetingId, existingAgent.id, existingAgent.instructions);
         } catch (error) {
-            return NextResponse.json({ error: "Failed to integrate AI agent" }, { status: 500 });
+            console.error("Failed to integrate AI agent:", error);
+            return NextResponse.json(
+                { error: "Failed to integrate AI agent", details: (error as Error).message },
+                { status: 500 }
+            );
         }
 
     } else if (eventType === "call.session_participant_left") {

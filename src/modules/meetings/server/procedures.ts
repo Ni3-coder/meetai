@@ -7,8 +7,8 @@ import { streamVideo } from "@/lib/stream-video";
 import { generateAvatarUri } from "@/lib/avatar";
 import { agents, meetings, user } from "@/db/schema";
 import { MeetingStatus, StreamTranscriptItem } from "../types";
-import { createTRPCRouter, protectedProcedure } from "@/trpc/init";
 import { meetingsInsertSchema, meetingsUpdateSchema } from "../schemas";
+import { createTRPCRouter, premiumProcedure, protectedProcedure } from "@/trpc/init";
 import { and, count, desc, eq, getTableColumns, ilike, inArray, sql } from "drizzle-orm";
 import { DEFAULT_PAGE, DEFAULT_PAGE_SIZE, MAX_PAGE_SIZE, MIN_PAGE_SIZE } from "@/constants";
 
