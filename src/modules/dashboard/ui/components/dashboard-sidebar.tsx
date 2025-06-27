@@ -3,8 +3,11 @@
 import Link from "next/link";
 import Image from "next/image";
 import { cn } from "@/lib/utils";
-import { Separator } from "@/components/ui/separator";
 import { usePathname } from "next/navigation";
+import { DashboardTrial } from "./dashboard-trial";
+import { Separator } from "@/components/ui/separator";
+import { BotIcon, StarIcon, VideoIcon } from "lucide-react"
+import { DashboardUserButton } from "./dashboard-user-button";
 import {
     Sidebar,
     SidebarContent,
@@ -16,8 +19,6 @@ import {
     SidebarMenuButton,
     SidebarMenuItem,
 } from "@/components/ui/sidebar"
-import { BotIcon, StarIcon, VideoIcon } from "lucide-react"
-import { DashboardUserButton } from "./dashboard-user-button";
 
 const firstSection = [
     {
@@ -53,7 +54,7 @@ export const DashboardSidebar = () => {
             </SidebarHeader>
             <div className="px-4 py-2">
                 <Separator className="opacity-10 text-[#5D6B68]" />
-            </div>  
+            </div>
             <SidebarContent>
                 <SidebarGroup>
                     <SidebarGroupContent>
@@ -106,8 +107,9 @@ export const DashboardSidebar = () => {
                 </SidebarGroup>
             </SidebarContent>
             <SidebarFooter className="text-white">
+                <DashboardTrial />
                 <DashboardUserButton />
             </SidebarFooter>
         </Sidebar>
-    )
-}
+    );
+};

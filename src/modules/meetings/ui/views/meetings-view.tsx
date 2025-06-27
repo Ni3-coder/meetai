@@ -34,8 +34,8 @@ export const MeetingsView = () => {
                     collaborate, share ideas, and interact with participants in real time." />
             )}
         </div>
-    )
-}
+    );
+};
 
 export const MeetingssViewLoading = () => {
     return (
@@ -43,8 +43,8 @@ export const MeetingssViewLoading = () => {
             title="Loading Meetings"
             description="This may take a few seconds..."
         />
-    )
-}
+    );
+};
 
 export const MeetingsViewError = () => {
     return (
@@ -52,5 +52,5 @@ export const MeetingsViewError = () => {
             title="Error Loading Meeetings"
             description="Something went wrong"
         />
-    )
-}
+    );
+};

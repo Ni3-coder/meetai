@@ -16,5 +16,5 @@ export const AgentsSearchFilter = () => {
             />
             <SearchIcon className="size-4 absolute left-2 top-1/2 -translate-y-1/2 text-muted-foreground" />
         </div>
-    )
-}
+    );
+};

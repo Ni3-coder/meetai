@@ -6,7 +6,7 @@ import {
     DialogDescription,
     DialogHeader,
     DialogTitle
-} from "@/components/ui/dialog"
+} from "@/components/ui/dialog";
 
 import {
     Drawer,
@@ -14,7 +14,7 @@ import {
     DrawerDescription,
     DrawerHeader,
     DrawerTitle,
-} from "@/components/ui/drawer"
+} from "@/components/ui/drawer";
 
 interface ResponsiveDialogProps {
     title: string;
@@ -59,5 +59,5 @@ export const ResponsiveDialog = ({
                 {children}
             </DialogContent>
         </Dialog>
-    )
-}
+    );
+};

@@ -36,8 +36,8 @@ export const AgentsView = () => {
                     your instructions and can interact with participants during the call." />
             )}
         </div>
-    )
-}
+    );
+};
 
 export const AgentsViewLoading = () => {
     return (
@@ -45,8 +45,8 @@ export const AgentsViewLoading = () => {
             title="Loading Agents"
             description="This may take a few seconds..."
         />
-    )
-}
+    );
+};
 
 export const AgentsViewError = () => {
     return (
@@ -54,5 +54,5 @@ export const AgentsViewError = () => {
             title="Error Loading Agents"
             description="Something went wrong"
         />
-    )
-}
+    );
+};

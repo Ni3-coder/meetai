@@ -7,12 +7,12 @@ import { ErrorBoundary } from "react-error-boundary";
 import { getQueryClient, trpc } from "@/trpc/server";
 import { loadSearchParams } from "@/modules/meetings/params";
 import { dehydrate, HydrationBoundary } from "@tanstack/react-query";
+import { MeetingsListHeader } from "@/modules/meetings/ui/components/meetings-list-header";
 import {
     MeetingssViewLoading,
     MeetingsView,
     MeetingsViewError
 } from "@/modules/meetings/ui/views/meetings-view";
-import { MeetingsListHeader } from "@/modules/meetings/ui/components/meetings-list-header";
 
 interface Props {
     searchParams: Promise<SearchParams>;

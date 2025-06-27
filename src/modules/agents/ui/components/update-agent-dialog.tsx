@@ -26,5 +26,5 @@ export const UpdateAgentDialog = ({
                 initialValues={initialValues}
             />
         </ResponsiveDialog>
-    )
-}
+    );
+};

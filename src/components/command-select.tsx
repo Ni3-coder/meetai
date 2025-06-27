@@ -1,7 +1,7 @@
-import { ReactNode, useState } from "react";
-import { ChevronsUpDownIcon } from "lucide-react";
 import { cn } from "@/lib/utils";
+import { ReactNode, useState } from "react";
 import { Button } from "@/components/ui/button";
+import { ChevronsUpDownIcon } from "lucide-react";
 import {
     CommandEmpty,
     CommandInput,
@@ -79,5 +79,5 @@ export const CommandSelect = ({
                 </CommandList>
             </CommandResponsiveDialog>
         </>
-    )
-}
+    );
+};

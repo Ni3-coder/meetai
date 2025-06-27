@@ -4,6 +4,7 @@ import { useState } from "react";
 import { useTRPC } from "@/trpc/client";
 import { useForm } from "react-hook-form";
 import { MeetingGetOne } from "../../types";
+import { useRouter } from "next/navigation";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { meetingsInsertSchema } from "../../schemas";
@@ -11,6 +12,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { CommandSelect } from "@/components/command-select";
 import { GeneratedAvatar } from "@/components/generated-avatar";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
+import { NewAgentDialog } from "@/modules/agents/ui/components/new-agent-dialog";
 import {
     Form,
     FormControl,
@@ -20,7 +22,6 @@ import {
     FormLabel,
     FormMessage,
 } from "@/components/ui/form";
-import { NewAgentDialog } from "@/modules/agents/ui/components/new-agent-dialog";
 
 interface MeetingFormProps {
     onSuccess: (id?: string) => void;
@@ -34,6 +35,7 @@ export const MeetingForm = ({
     initialValues
 }: MeetingFormProps) => {
     const trpc = useTRPC();
+    const router = useRouter();
     const queryClient = useQueryClient();
 
     const [openNewAgentDialog, setOpenNewAgentDialog] = useState(false);
@@ -53,12 +55,18 @@ export const MeetingForm = ({
                     trpc.meetings.getMany.queryOptions({}),
                 );
 
+                await queryClient.invalidateQueries(
+                    trpc.premium.getFreeUsage.queryOptions(),
+                );
+
                 onSuccess?.(data.id);
             },
             onError: (error) => {
                 toast.error(error.message);
 
-
+                if (error.data?.code === "FORBIDDEN") {
+                    router.push("/upgrade");
+                }
             }
         }),
     );
@@ -178,7 +186,7 @@ export const MeetingForm = ({
                 </form>
             </Form>
         </>
-    )
+    );
 };
 
 

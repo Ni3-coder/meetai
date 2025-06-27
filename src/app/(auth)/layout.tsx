@@ -9,7 +9,7 @@ const Layout = ({ children }: Props) => {
                 {children}
             </div>
         </div>
-    )
-}
+    );
+};
 
-export default Layout
+export default Layout;

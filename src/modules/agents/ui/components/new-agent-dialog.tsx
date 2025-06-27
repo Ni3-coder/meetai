@@ -22,5 +22,5 @@ export const NewAgentDialog = ({
                 onCancel={() => onOpenChange(false)}
             />
         </ResponsiveDialog>
-    )
-}
+    );
+};

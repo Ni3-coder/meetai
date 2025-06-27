@@ -31,7 +31,9 @@ export const AgentIdView = ({ agentId }: Props) => {
         trpc.agents.remove.mutationOptions({
             onSuccess: async () => {
                 await queryClient.invalidateQueries(trpc.agents.getMany.queryOptions({}));
-
+                await queryClient.invalidateQueries(
+                    trpc.premium.getFreeUsage.queryOptions(),
+                );
                 router.push("/agents");
             },
             onError: (error) => {
@@ -102,8 +104,8 @@ export const AgentIdViewLoading = () => {
             title="Loading Agent"
             description="This may take a few seconds..."
         />
-    )
-}
+    );
+};
 
 export const AgentIdViewError = () => {
     return (
@@ -111,5 +113,5 @@ export const AgentIdViewError = () => {
             title="Error Loading Agent"
             description="Something went wrong"
         />
-    )
-}
+    );
+};

@@ -26,5 +26,5 @@ export const UpdateMeetingDialog = ({
                 initialValues={initialValues}
             />
         </ResponsiveDialog>
-    )
-}
+    );
+};

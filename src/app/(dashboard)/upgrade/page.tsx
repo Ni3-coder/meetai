@@ -5,35 +5,35 @@ import { redirect } from "next/navigation";
 import { getQueryClient, trpc } from "@/trpc/server";
 import { ErrorBoundary } from "react-error-boundary";
 import { dehydrate, HydrationBoundary } from "@tanstack/react-query";
-import { MeetingIdView, MeetingIdViewError, MeetingIdViewLoading } from "@/modules/meetings/ui/views/meeting-id-view";
+import {
+    UpgradeView,
+    UpgradeViewLoading,
+    UpgradeViewError,
+} from "@/modules/premium/ui/views/upgrade-view";
 
-interface Props {
-    params: Promise<{
-        meetingId: string;
-    }>
-};
-
-const Page = async ({ params }: Props) => {
-    const { meetingId } = await params;
-
+const Page = async () => {
     const session = await auth.api.getSession({
         headers: await headers(),
     });
 
     if (!session) {
-        redirect("/sign-in")
+        redirect("/sign-in");
     }
 
     const queryClient = getQueryClient();
     void queryClient.prefetchQuery(
-        trpc.meetings.getOne.queryOptions({ id: meetingId }),
-    );
+        trpc.premium.getCurrentSubscription.queryOptions(),
+    )
+
+    void queryClient.prefetchQuery(
+        trpc.premium.getProducts.queryOptions(),
+    )
 
     return (
         <HydrationBoundary state={dehydrate(queryClient)}>
-            <Suspense fallback={<MeetingIdViewLoading />}>
-                <ErrorBoundary fallback={<MeetingIdViewError />}>
-                    <MeetingIdView meetingId={meetingId} />
+            <Suspense fallback={<UpgradeViewLoading />}>
+                <ErrorBoundary fallback={<UpgradeViewError />}>
+                    <UpgradeView />
                 </ErrorBoundary>
             </Suspense>
         </HydrationBoundary>

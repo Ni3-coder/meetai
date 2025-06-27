@@ -25,7 +25,7 @@ const page = async ({ params }: Props) => {
                 </ErrorBoundary>
             </Suspense>
         </HydrationBoundary>
-    )
-}
+    );
+};
 
-export default page
+export default page;

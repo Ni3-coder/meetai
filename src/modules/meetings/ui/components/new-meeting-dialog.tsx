@@ -28,5 +28,5 @@ export const NewMeetingDialog = ({
                 onCancel={() => onOpenChange(false)}
             />
         </ResponsiveDialog>
-    )
-}
+    );
+};

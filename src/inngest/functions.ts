@@ -4,7 +4,7 @@ import JSONL from "jsonl-parse-stringify";
 import { inngest } from "@/inngest/client";
 import { agents, meetings, user } from "@/db/schema";
 import { StreamTranscriptItem } from "@/modules/meetings/types";
-import { createAgent, openai, TextMessage } from "@inngest/agent-kit"
+import { createAgent, openai, TextMessage } from "@inngest/agent-kit";
 
 const summarizer = createAgent({
     name: "summarizer",

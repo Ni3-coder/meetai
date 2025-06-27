@@ -7,12 +7,11 @@ import { FcGoogle } from "react-icons/fc";
 import { FaGithub } from "react-icons/fa";
 import { useForm } from "react-hook-form";
 import { useRouter } from "next/navigation";
-import { OctagonAlertIcon } from "lucide-react";
-import { zodResolver } from "@hookform/resolvers/zod"
-
 import { Input } from "@/components/ui/input";
 import { authClient } from "@/lib/auth-client";
+import { OctagonAlertIcon } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { zodResolver } from "@hookform/resolvers/zod"
 import { Card, CardContent } from "@/components/ui/card"
 import { Alert, AlertTitle } from "@/components/ui/alert";
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form";
@@ -222,5 +221,5 @@ export const SignUpView = () => {
                 By clicking continue, you agree to our{" "}<a href="#">Terms of service</a> and <a href="#">Privacy Policy</a>
             </div>
         </div>
-    )
-}
+    );
+};

@@ -177,7 +177,7 @@ export const meetingsRouter = createTRPCRouter({
 
             return updatedMeeting;
         }),
-    create: protectedProcedure
+    create: premiumProcedure("meetings")
         .input(meetingsInsertSchema)
         .mutation(async ({ input, ctx }) => {
             const [createdMeeting] = await db

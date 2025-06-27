@@ -1,5 +1,6 @@
 import { useRouter } from "next/navigation";
 import { authClient } from "@/lib/auth-client"
+import { Button } from "@/components/ui/button";
 import { useIsMobile } from "@/hooks/use-mobile";
 import { Avatar, AvatarImage } from "@/components/ui/avatar";
 import { GeneratedAvatar } from "@/components/generated-avatar";
@@ -21,7 +22,6 @@ import {
     DrawerTitle,
     DrawerTrigger,
 } from "@/components/ui/drawer"
-import { Button } from "@/components/ui/button";
 
 export const DashboardUserButton = () => {
     const router = useRouter();
@@ -73,7 +73,7 @@ export const DashboardUserButton = () => {
                         <DrawerDescription>{data.user.email}</DrawerDescription>
                     </DrawerHeader>
                     <DrawerFooter>
-                        <Button variant="outline" onClick={() => { }}>
+                        <Button variant="outline" onClick={() => authClient.customer.portal()}>
                             <CreditCardIcon className="size-4 text-black" />
                             Billing
                         </Button>
@@ -119,7 +119,7 @@ export const DashboardUserButton = () => {
                     </div>
                 </DropdownMenuLabel>
                 <DropdownMenuSeparator />
-                <DropdownMenuItem className="cursor-pointer flex items-center justify-between">
+                <DropdownMenuItem className="cursor-pointer flex items-center justify-between" onClick={() => authClient.customer.portal()}>
                     Billing
                     <CreditCardIcon className="size-4" />
                 </DropdownMenuItem>

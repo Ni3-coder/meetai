@@ -32,6 +32,6 @@ export const CallProvider = ({ meetingId, meetingName }: Props) => {
                 generateAvatarUri({ seed: data.user.name, variant: "initials" })
             }
         />
-    )
-}
+    );
+};
 
