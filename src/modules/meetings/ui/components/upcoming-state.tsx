@@ -1,7 +1,7 @@
-import Link from "next/link"
-import { Button } from "@/components/ui/button"
-import { VideoIcon, BanIcon } from "lucide-react"
-import { EmptyState } from "../../../../components/empty-state"
+import Link from "next/link";
+import { Button } from "@/components/ui/button";
+import { VideoIcon, BanIcon } from "lucide-react";
+import { EmptyState } from "../../../../components/empty-state";
 
 interface Props {
     meetingId: string;
@@ -39,5 +39,5 @@ export const UpcomingState = ({
                 </Button>
             </div>
         </div>
-    )
-}
+    );
+};

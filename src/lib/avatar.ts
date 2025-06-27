@@ -16,4 +16,4 @@ export const generateAvatarUri = ({ seed, variant }: Props) => {
     }
 
     return avatar.toDataUri();
-}
+};

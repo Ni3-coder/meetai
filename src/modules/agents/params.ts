@@ -1,5 +1,5 @@
-import { createLoader, parseAsInteger, parseAsString } from "nuqs/server";
 import { DEFAULT_PAGE } from "@/constants";
+import { createLoader, parseAsInteger, parseAsString } from "nuqs/server";
 
 export const filtersSearchParams = {
     search: parseAsString.withDefault("").withOptions({ clearOnDefault: true }),

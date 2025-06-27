@@ -7,4 +7,4 @@ export const HomeView = () => {
       Home View
     </div>
   );
-}
+};

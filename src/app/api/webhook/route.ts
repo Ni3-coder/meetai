@@ -1,4 +1,8 @@
+import { db } from "@/db";
+import { inngest } from "@/inngest/client";
 import { and, eq, not } from "drizzle-orm";
+import { agents, meetings } from "@/db/schema";
+import { streamVideo } from "@/lib/stream-video";
 import { NextRequest, NextResponse } from "next/server";
 import {
     CallEndedEvent,
@@ -7,10 +11,6 @@ import {
     CallTranscriptionReadyEvent,
     CallSessionParticipantLeftEvent,
 } from "@stream-io/node-sdk";
-import { db } from "@/db";
-import { agents, meetings } from "@/db/schema";
-import { streamVideo } from "@/lib/stream-video";
-import { inngest } from "@/inngest/client";
 
 function verifySignatureWithSDK(body: string, signature: string): boolean {
     return streamVideo.verifyWebhook(body, signature);

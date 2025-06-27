@@ -12,7 +12,7 @@ import { AgentsView, AgentsViewError, AgentsViewLoading } from "@/modules/agents
 
 interface Props {
     searchParams: Promise<SearchParams>
-}
+};
 
 const Page = async ({ searchParams }: Props) => {
     const filters = await loadSearchParams(searchParams)

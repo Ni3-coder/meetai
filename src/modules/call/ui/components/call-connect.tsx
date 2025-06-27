@@ -1,9 +1,11 @@
 "use client";
 
 import { CallUI } from "./call-ui";
+import { useTRPC } from "@/trpc/client";
 import { LoaderIcon } from "lucide-react";
 import { useEffect, useState } from "react";
 import { useMutation } from "@tanstack/react-query";
+import "@stream-io/video-react-sdk/dist/css/styles.css";
 import {
     Call,
     CallingState,
@@ -11,8 +13,6 @@ import {
     StreamVideo,
     StreamVideoClient,
 } from "@stream-io/video-react-sdk";
-import { useTRPC } from "@/trpc/client";
-import "@stream-io/video-react-sdk/dist/css/styles.css";
 
 interface Props {
     meetingId: string;
@@ -78,8 +78,8 @@ export const CallConnect = ({
             <div className="flex h-screen items-center justify-center bg-radial from-sidebar-accent to-sidebar">
                 <LoaderIcon className="size-6 animate-spin text-white" />
             </div>
-        )
-    }
+        );
+    };
 
     return (
         <StreamVideo client={client}>
@@ -87,5 +87,5 @@ export const CallConnect = ({
                 <CallUI meetingName={meetingName} />
             </StreamCall>
         </StreamVideo>
-    )
-}
+    );
+};

@@ -1,4 +1,4 @@
-import { EmptyState } from "../../../../components/empty-state"
+import { EmptyState } from "../../../../components/empty-state";
 
 export const ProcessingState = () => {
     return (
@@ -9,5 +9,5 @@ export const ProcessingState = () => {
                 description="This meeting was completed, a summary will appear soon"
             />
         </div>
-    )
-}
+    );
+};

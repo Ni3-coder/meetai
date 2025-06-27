@@ -1,5 +1,9 @@
 import Link from 'next/link';
 import { LogInIcon } from "lucide-react";
+import { authClient } from '@/lib/auth-client';
+import { Button } from "@/components/ui/button";
+import { generateAvatarUri } from '@/lib/avatar';
+import "@stream-io/video-react-sdk/dist/css/styles.css";
 import {
     DefaultVideoPlaceholder,
     StreamVideoParticipant,
@@ -8,10 +12,6 @@ import {
     useCallStateHooks,
     VideoPreview,
 } from "@stream-io/video-react-sdk";
-import { authClient } from '@/lib/auth-client';
-import { Button } from "@/components/ui/button";
-import { generateAvatarUri } from '@/lib/avatar';
-import "@stream-io/video-react-sdk/dist/css/styles.css";
 
 interface Props {
     onJoin: () => void;
@@ -34,16 +34,16 @@ const DisabledVideoPreview = () => {
                 } as StreamVideoParticipant
             }
         />
-    )
-}
+    );
+};
 
 const AllowBrowserPermissions = () => {
     return (
         <p className="text-sm">
             Please grant your browser a permission to access your camera and microphone.
         </p>
-    )
-}
+    );
+};
 
 export const CallLobby = ({ onJoin }: Props) => {
     const { useCameraState, useMicrophoneState } = useCallStateHooks();
@@ -87,6 +87,6 @@ export const CallLobby = ({ onJoin }: Props) => {
                 </div>
             </div>
         </div>
-    )
-}
+    );
+};
 

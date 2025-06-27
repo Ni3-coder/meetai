@@ -32,6 +32,6 @@ export const CallUI = ({ meetingName }: Props) => {
             {show === "call" && <CallActive onLeave={handleLeave} meetingName={meetingName} />}
             {show === "ended" && <CallEnded />}
         </StreamTheme>
-    )
+    );
 };
 

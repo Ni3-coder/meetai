@@ -3,7 +3,9 @@ import { toast } from "sonner";
 import { useTRPC } from "@/trpc/client";
 import { useForm } from "react-hook-form";
 import { AgentGetOne } from "../../types";
+import { useRouter } from "next/navigation";
 import { Input } from "@/components/ui/input";
+import { Button } from "@/components/ui/button";
 import { agentsInsertSchema } from "../../schemas";
 import { Textarea } from "@/components/ui/textarea";
 import { zodResolver } from "@hookform/resolvers/zod";
@@ -17,7 +19,6 @@ import {
     FormLabel,
     FormMessage,
 } from "@/components/ui/form";
-import { Button } from "@/components/ui/button";
 
 interface AgentFormProps {
     onSuccess: () => void;
@@ -31,6 +32,7 @@ export const AgentForm = ({
     initialValues
 }: AgentFormProps) => {
     const trpc = useTRPC();
+    const router = useRouter();
     const queryClient = useQueryClient();
     const createAgent = useMutation(
         trpc.agents.create.mutationOptions({
@@ -39,12 +41,18 @@ export const AgentForm = ({
                     trpc.agents.getMany.queryOptions({}),
                 );
 
+                await queryClient.invalidateQueries(
+                    trpc.premium.getFreeUsage.queryOptions(),
+                );
+
                 onSuccess?.();
             },
             onError: (error) => {
                 toast.error(error.message);
 
-
+                if (error.data?.code === "FORBIDDEN") {
+                    router.push("/upgrade");
+                }
             }
         }),
     );
@@ -65,8 +73,6 @@ export const AgentForm = ({
             },
             onError: (error) => {
                 toast.error(error.message);
-
-
             }
         }),
     );
@@ -137,7 +143,7 @@ export const AgentForm = ({
                 </div>
             </form>
         </Form>
-    )
+    );
 };
 
 

@@ -1,11 +1,11 @@
-"use client"
+"use client";
 
 import { format } from 'date-fns';
-import { MeetingGetMany } from "../../types"
-import { Badge } from "@/components/ui/badge"
-import { cn, formatDuration } from "@/lib/utils"
-import { ColumnDef } from "@tanstack/react-table"
-import { GeneratedAvatar } from "@/components/generated-avatar"
+import { MeetingGetMany } from "../../types";
+import { Badge } from "@/components/ui/badge";
+import { cn, formatDuration } from "@/lib/utils";
+import { ColumnDef } from "@tanstack/react-table";
+import { GeneratedAvatar } from "@/components/generated-avatar";
 import {
     CircleCheckIcon,
     CircleXIcon,
@@ -13,7 +13,7 @@ import {
     ClockFadingIcon,
     CornerDownRightIcon,
     LoaderIcon
-} from "lucide-react"
+} from "lucide-react";
 
 const statusIconMap = {
     upcoming: ClockArrowUpIcon,

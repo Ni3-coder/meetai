@@ -2,12 +2,12 @@ import { z } from "zod";
 import { db } from "@/db";
 import { MeetingStatus } from "../types";
 import { TRPCError } from "@trpc/server";
-import { generateAvatarUri } from "@/lib/avatar";
 import { agents, meetings } from "@/db/schema";
 import { streamVideo } from "@/lib/stream-video";
-import { createTRPCRouter, protectedProcedure } from "@/trpc/init";
+import { generateAvatarUri } from "@/lib/avatar";
 import { meetingsInsertSchema, meetingsUpdateSchema } from "../schemas";
 import { and, count, desc, eq, getTableColumns, ilike, sql } from "drizzle-orm";
+import { createTRPCRouter, premiumProcedure, protectedProcedure } from "@/trpc/init";
 import { DEFAULT_PAGE, DEFAULT_PAGE_SIZE, MAX_PAGE_SIZE, MIN_PAGE_SIZE } from "@/constants";
 
 export const meetingsRouter = createTRPCRouter({
@@ -77,7 +77,7 @@ export const meetingsRouter = createTRPCRouter({
 
             return updatedMeeting;
         }),
-    create: protectedProcedure
+    create: premiumProcedure("meetings")
         .input(meetingsInsertSchema)
         .mutation(async ({ input, ctx }) => {
             const [createdMeeting] = await db

@@ -35,5 +35,5 @@ export const DataPagination = ({
                 </div>
             </div>
         </div>
-    )
-}
+    );
+};
