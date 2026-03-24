@@ -5,33 +5,35 @@ import { CallActive } from "./call-active";
 import { StreamTheme, useCall } from "@stream-io/video-react-sdk";
 
 interface Props {
-    meetingName: string;
-};
+  meetingName: string;
+}
 
 export const CallUI = ({ meetingName }: Props) => {
-    const call = useCall();
-    const [show, setShow] = useState<"lobby" | "call" | "ended">("lobby");
-    const handleJoin = async () => {
-        if (!call) return;
+  const call = useCall();
+  const [show, setShow] = useState<"lobby" | "call" | "ended">("lobby");
+  const handleJoin = async () => {
+    if (!call) return;
 
-        await call.join();
+    await call.join();
 
-        setShow("call");
-    };
+    setShow("call");
+  };
 
-    const handleLeave = () => {
-        if (!call) return;
+  const handleLeave = async () => {
+    if (!call) return;
 
-        call.endCall();
-        setShow("ended")
-    };
+    await call.leave();
+    await call.endCall();
+    setShow("ended");
+  };
 
-    return (
-        <StreamTheme className="h-full">
-            {show === "lobby" && <CallLobby onJoin={handleJoin} />}
-            {show === "call" && <CallActive onLeave={handleLeave} meetingName={meetingName} />}
-            {show === "ended" && <CallEnded />}
-        </StreamTheme>
-    );
+  return (
+    <StreamTheme className="h-full">
+      {show === "lobby" && <CallLobby onJoin={handleJoin} />}
+      {show === "call" && (
+        <CallActive onLeave={handleLeave} meetingName={meetingName} />
+      )}
+      {show === "ended" && <CallEnded />}
+    </StreamTheme>
+  );
 };
-
